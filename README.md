@@ -1,16 +1,16 @@
 The Link Visit Counter is a Chrome extension that tracks and displays the number of times you visit specific websites, helping you monitor your browsing habits.
 
-Features:
+**Features:**
 
-Visit Count Tracking: Tracks how many times you visit each website.
+**Visit Count Tracking:** Tracks how many times you visit each website.
 
-Daily and Total Counts:
+**Daily and Total Counts:**
 
 - Daily Tab: Shows visit counts for the current day (resets at midnight).
 
 - Total Tab: Shows cumulative visit counts across all days.
 
-Installation:
+**Installation:**
 
 - Download or clone this repository.
 
@@ -20,4 +20,4 @@ Installation:
 
 - Click Load unpacked and select the extension folder.
 
-The extension will appear in your Chrome toolbar.
+**The extension will appear in your Chrome toolbar.**
