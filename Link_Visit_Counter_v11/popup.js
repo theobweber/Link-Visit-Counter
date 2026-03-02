@@ -93,6 +93,28 @@ document.addEventListener("DOMContentLoaded", () => {
       return statsB.visits - statsA.visits;
     });
 
+    content.innerHTML = "";
+
+    const entries = Object.entries(counts);
+    if (!entries.length) {
+      const emptyState = document.createElement("div");
+      emptyState.className = "empty-state";
+      emptyState.textContent = "No data yet.";
+      content.appendChild(emptyState);
+      return;
+    }
+
+    const sortedEntries = entries.sort((a, b) => {
+      const statsA = normalizeStats(a[1]);
+      const statsB = normalizeStats(b[1]);
+
+      if (mode === "totalTime") {
+        return statsB.timeMs - statsA.timeMs;
+      }
+
+      return statsB.visits - statsA.visits;
+    });
+
   function displayCounts(counts) {
     content.innerHTML = "";
 
