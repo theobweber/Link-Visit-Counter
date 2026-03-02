@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setActiveTab(dailyTab);
   loadDailyStats();
+  loadDailyCounts();
 
   dailyTab.addEventListener("click", () => {
     setActiveTab(dailyTab);
@@ -22,6 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
   totalTimeTab.addEventListener("click", () => {
     setActiveTab(totalTimeTab);
     loadTotalStats("time");
+  totalTab.addEventListener("click", () => {
+    totalTab.classList.add("active");
+    dailyTab.classList.remove("active");
+    loadTotalCounts();
   });
 
   function setActiveTab(activeTab) {
@@ -34,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const today = new Date().toLocaleDateString();
       const dailyCounts = result.dailyCounts?.[today] || {};
       displayCounts(dailyCounts, "daily");
+      displayCounts(dailyCounts);
     });
   }
 
@@ -87,6 +93,15 @@ document.addEventListener("DOMContentLoaded", () => {
       return statsB.visits - statsA.visits;
     });
 
+  function displayCounts(counts) {
+    content.innerHTML = "";
+
+    const sortedEntries = Object.entries(counts).sort((a, b) => {
+      const statsA = normalizeStats(a[1]);
+      const statsB = normalizeStats(b[1]);
+      return statsB.visits - statsA.visits;
+    });
+
     sortedEntries.forEach(([hostname, rawStats]) => {
       const stats = normalizeStats(rawStats);
       const div = document.createElement("div");
@@ -103,6 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         text.textContent = `${hostname}: ${stats.visits} visits`;
       }
+      text.textContent = `${hostname}: ${stats.visits} visits • ${formatDuration(stats.timeMs)}`;
 
       div.appendChild(favicon);
       div.appendChild(text);
