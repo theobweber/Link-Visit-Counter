@@ -1,47 +1,143 @@
-// Initialize storage if empty
+const STORAGE_KEYS = {
+  DAILY_COUNTS: "dailyCounts",
+  TOTAL_COUNTS: "totalCounts",
+  ACTIVE_SESSIONS: "activeSessions"
+};
+
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.local.get(["dailyCounts", "totalCounts"], (result) => {
-    if (!result.dailyCounts) {
-      chrome.storage.local.set({ dailyCounts: {}, totalCounts: {} });
+  chrome.storage.local.get(
+    [STORAGE_KEYS.DAILY_COUNTS, STORAGE_KEYS.TOTAL_COUNTS, STORAGE_KEYS.ACTIVE_SESSIONS],
+    (result) => {
+      chrome.storage.local.set({
+        [STORAGE_KEYS.DAILY_COUNTS]: result[STORAGE_KEYS.DAILY_COUNTS] || {},
+        [STORAGE_KEYS.TOTAL_COUNTS]: result[STORAGE_KEYS.TOTAL_COUNTS] || {},
+        [STORAGE_KEYS.ACTIVE_SESSIONS]: result[STORAGE_KEYS.ACTIVE_SESSIONS] || {}
+      });
     }
-  });
+  );
 });
 
-// Listen for tab updates
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (changeInfo.status === "complete" && tab.url) {
-    const url = new URL(tab.url);
-    const hostname = url.hostname;
+function getTodayKey() {
+  return new Date().toLocaleDateString();
+}
 
-    // Get current date
-    const today = new Date().toLocaleDateString();
+function ensureStatsEntry(entry) {
+  if (typeof entry === "number") {
+    return { visits: entry, timeMs: 0 };
+  }
 
-    // Update daily and total counts
-    chrome.storage.local.get(["dailyCounts", "totalCounts"], (result) => {
-      const dailyCounts = result.dailyCounts || {};
-      const totalCounts = result.totalCounts || {};
+  return {
+    visits: entry?.visits || 0,
+    timeMs: entry?.timeMs || 0
+  };
+}
 
-      // Update daily count
+function startSession(tabId, hostname) {
+  chrome.storage.local.get(
+    [STORAGE_KEYS.DAILY_COUNTS, STORAGE_KEYS.TOTAL_COUNTS, STORAGE_KEYS.ACTIVE_SESSIONS],
+    (result) => {
+      const today = getTodayKey();
+      const dailyCounts = result[STORAGE_KEYS.DAILY_COUNTS] || {};
+      const totalCounts = result[STORAGE_KEYS.TOTAL_COUNTS] || {};
+      const activeSessions = result[STORAGE_KEYS.ACTIVE_SESSIONS] || {};
+
       if (!dailyCounts[today]) {
         dailyCounts[today] = {};
       }
-      dailyCounts[today][hostname] = (dailyCounts[today][hostname] || 0) + 1;
 
-      // Update total count
-      totalCounts[hostname] = (totalCounts[hostname] || 0) + 1;
+      dailyCounts[today][hostname] = ensureStatsEntry(dailyCounts[today][hostname]);
+      totalCounts[hostname] = ensureStatsEntry(totalCounts[hostname]);
 
-      // Save back to storage
-      chrome.storage.local.set({ dailyCounts, totalCounts });
-    });
-  }
-});
+      dailyCounts[today][hostname].visits += 1;
+      totalCounts[hostname].visits += 1;
 
-// Reset daily counts at midnight
-function resetDailyCounts() {
-  chrome.storage.local.set({ dailyCounts: {} });
+      activeSessions[tabId] = {
+        hostname,
+        startTime: Date.now()
+      };
+
+      chrome.storage.local.set({
+        [STORAGE_KEYS.DAILY_COUNTS]: dailyCounts,
+        [STORAGE_KEYS.TOTAL_COUNTS]: totalCounts,
+        [STORAGE_KEYS.ACTIVE_SESSIONS]: activeSessions
+      });
+    }
+  );
 }
 
-// Schedule reset at midnight
+function stopSession(tabId) {
+  chrome.storage.local.get(
+    [STORAGE_KEYS.DAILY_COUNTS, STORAGE_KEYS.TOTAL_COUNTS, STORAGE_KEYS.ACTIVE_SESSIONS],
+    (result) => {
+      const activeSessions = result[STORAGE_KEYS.ACTIVE_SESSIONS] || {};
+      const session = activeSessions[tabId];
+
+      if (!session) {
+        return;
+      }
+
+      const elapsedMs = Math.max(0, Date.now() - session.startTime);
+      const today = getTodayKey();
+      const dailyCounts = result[STORAGE_KEYS.DAILY_COUNTS] || {};
+      const totalCounts = result[STORAGE_KEYS.TOTAL_COUNTS] || {};
+
+      if (!dailyCounts[today]) {
+        dailyCounts[today] = {};
+      }
+
+      dailyCounts[today][session.hostname] = ensureStatsEntry(dailyCounts[today][session.hostname]);
+      totalCounts[session.hostname] = ensureStatsEntry(totalCounts[session.hostname]);
+
+      dailyCounts[today][session.hostname].timeMs += elapsedMs;
+      totalCounts[session.hostname].timeMs += elapsedMs;
+
+      delete activeSessions[tabId];
+
+      chrome.storage.local.set({
+        [STORAGE_KEYS.DAILY_COUNTS]: dailyCounts,
+        [STORAGE_KEYS.TOTAL_COUNTS]: totalCounts,
+        [STORAGE_KEYS.ACTIVE_SESSIONS]: activeSessions
+      });
+    }
+  );
+}
+
+function getHostname(urlString) {
+  try {
+    const url = new URL(urlString);
+
+    if (url.protocol !== "http:" && url.protocol !== "https:") {
+      return null;
+    }
+
+    return url.hostname;
+  } catch {
+    return null;
+  }
+}
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status !== "complete" || !tab.url) {
+    return;
+  }
+
+  const hostname = getHostname(tab.url);
+  if (!hostname) {
+    return;
+  }
+
+  stopSession(tabId);
+  startSession(tabId, hostname);
+});
+
+chrome.tabs.onRemoved.addListener((tabId) => {
+  stopSession(tabId);
+});
+
+function resetDailyCounts() {
+  chrome.storage.local.set({ [STORAGE_KEYS.DAILY_COUNTS]: {} });
+}
+
 const now = new Date();
 const midnight = new Date(now);
 midnight.setHours(24, 0, 0, 0);
@@ -49,5 +145,5 @@ const timeUntilMidnight = midnight - now;
 
 setTimeout(() => {
   resetDailyCounts();
-  setInterval(resetDailyCounts, 24 * 60 * 60 * 1000); // Reset every 24 hours
+  setInterval(resetDailyCounts, 24 * 60 * 60 * 1000);
 }, timeUntilMidnight);
