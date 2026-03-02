@@ -125,4 +125,3 @@ document.addEventListener("DOMContentLoaded", () => {
       content.appendChild(div);
     });
   }
-});
