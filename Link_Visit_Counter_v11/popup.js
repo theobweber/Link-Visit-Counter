@@ -1,64 +1,111 @@
 document.addEventListener("DOMContentLoaded", () => {
   const dailyTab = document.getElementById("dailyTab");
-  const totalTab = document.getElementById("totalTab");
+  const totalVisitsTab = document.getElementById("totalVisitsTab");
+  const totalTimeTab = document.getElementById("totalTimeTab");
   const content = document.getElementById("content");
 
-  // Load daily counts by default
-  loadDailyCounts();
+  const tabs = [dailyTab, totalVisitsTab, totalTimeTab];
 
-  // Switch to daily counts
+  setActiveTab(dailyTab);
+  loadDailyStats();
+
   dailyTab.addEventListener("click", () => {
-    dailyTab.classList.add("active");
-    totalTab.classList.remove("active");
-    loadDailyCounts();
+    setActiveTab(dailyTab);
+    loadDailyStats();
   });
 
-  // Switch to total counts
-  totalTab.addEventListener("click", () => {
-    totalTab.classList.add("active");
-    dailyTab.classList.remove("active");
-    loadTotalCounts();
+  totalVisitsTab.addEventListener("click", () => {
+    setActiveTab(totalVisitsTab);
+    loadTotalStats("visits");
   });
 
-  function loadDailyCounts() {
+  totalTimeTab.addEventListener("click", () => {
+    setActiveTab(totalTimeTab);
+    loadTotalStats("time");
+  });
+
+  function setActiveTab(activeTab) {
+    tabs.forEach((tab) => tab.classList.remove("active"));
+    activeTab.classList.add("active");
+  }
+
+  function loadDailyStats() {
     chrome.storage.local.get("dailyCounts", (result) => {
       const today = new Date().toLocaleDateString();
-      const dailyCounts = result.dailyCounts[today] || {};
-      displayCounts(dailyCounts);
+      const dailyCounts = result.dailyCounts?.[today] || {};
+      displayCounts(dailyCounts, "daily");
     });
   }
 
-  function loadTotalCounts() {
+  function loadTotalStats(sortBy) {
     chrome.storage.local.get("totalCounts", (result) => {
       const totalCounts = result.totalCounts || {};
-      displayCounts(totalCounts);
+      displayCounts(totalCounts, sortBy === "time" ? "totalTime" : "totalVisits");
     });
   }
 
-  function displayCounts(counts) {
+  function normalizeStats(stats) {
+    if (typeof stats === "number") {
+      return { visits: stats, timeMs: 0 };
+    }
+
+    return {
+      visits: stats?.visits || 0,
+      timeMs: stats?.timeMs || 0
+    };
+  }
+
+  function formatDuration(timeMs) {
+    const totalSeconds = Math.floor(timeMs / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    return `${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  function displayCounts(counts, mode) {
     content.innerHTML = "";
 
-    // Convert counts object to an array and sort by count (descending)
-    const sortedEntries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    const entries = Object.entries(counts);
+    if (!entries.length) {
+      const emptyState = document.createElement("div");
+      emptyState.className = "empty-state";
+      emptyState.textContent = "No data yet.";
+      content.appendChild(emptyState);
+      return;
+    }
 
-    // Display sorted counts with favicons
-    sortedEntries.forEach(([hostname, count]) => {
+    const sortedEntries = entries.sort((a, b) => {
+      const statsA = normalizeStats(a[1]);
+      const statsB = normalizeStats(b[1]);
+
+      if (mode === "totalTime") {
+        return statsB.timeMs - statsA.timeMs;
+      }
+
+      return statsB.visits - statsA.visits;
+    });
+
+    sortedEntries.forEach(([hostname, rawStats]) => {
+      const stats = normalizeStats(rawStats);
       const div = document.createElement("div");
-      div.className = "site-entry"; // Add the class for styling
+      div.className = "site-entry";
 
-      // Create favicon image element
       const favicon = document.createElement("img");
       favicon.src = `https://www.google.com/s2/favicons?domain=${hostname}`;
 
-      // Create text element for hostname and count
       const text = document.createElement("span");
-      text.textContent = `${hostname}: ${count}`;
+      if (mode === "daily") {
+        text.textContent = `${hostname}: ${stats.visits} visits • ${formatDuration(stats.timeMs)}`;
+      } else if (mode === "totalTime") {
+        text.textContent = `${hostname}: ${formatDuration(stats.timeMs)}`;
+      } else {
+        text.textContent = `${hostname}: ${stats.visits} visits`;
+      }
 
-      // Append favicon and text to the div
       div.appendChild(favicon);
       div.appendChild(text);
-
-      // Append the div to the content container
       content.appendChild(div);
     });
   }
