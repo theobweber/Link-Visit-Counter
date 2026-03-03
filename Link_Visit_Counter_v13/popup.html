@@ -8,14 +8,16 @@
 </head>
 <body>
   <div class="container">
-    <h1>Link Counter</h1>
-    <div class="tabs">
+    <section id="commandCenter" class="command-center"></section>
+
+    <nav class="tabs" aria-label="Views">
       <button id="dailyTab" class="active">Daily</button>
+      <button id="weeklyTab">Weekly</button>
       <button id="totalTab">Total</button>
-    </div>
-    <div id="content">
-      <!-- Content will be populated by popup.js -->
-    </div>
+      <button id="settingsTab" title="Settings" aria-label="Settings">⚙</button>
+    </nav>
+
+    <main id="content"></main>
   </div>
   <script src="popup.js"></script>
 </body>
