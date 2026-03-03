@@ -6,7 +6,6 @@ body {
   padding: 10px;
 }
 
-<<<<<<< HEAD:Link_Visit_Counter_v11/styles.css
 .container { width: 360px; }
 h1 { font-size: 18px; text-align: center; margin-bottom: 10px; }
 
@@ -37,68 +36,3 @@ button.ghost, .ghost { background: #4f545c; color: white; border: none; border-r
 
 .empty-state { text-align: center; color: #b9bbbe; font-size: 13px; padding: 12px 0; }
 .small { font-size: 11px; color: #b9bbbe; }
-=======
-.container {
-  width: 320px;
-}
-
-h1 {
-  font-size: 18px;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.tabs {
-  display: flex;
-  justify-content: space-between;
-  gap: 6px;
-  margin-bottom: 10px;
-}
-
-.tabs button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 12px;
-  cursor: pointer;
-  padding: 6px 8px;
-  border-radius: 5px;
-  flex: 1;
-}
-
-.tabs button.active {
-  background-color: #7289da;
-}
-
-#content {
-  background-color: #2f3136;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-.site-entry {
-  display: flex;
-  align-items: center;
-  background-color: #40444b;
-  padding: 8px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-}
-
-.site-entry img {
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-}
-
-.site-entry span {
-  font-size: 13px;
-}
-
-.empty-state {
-  text-align: center;
-  color: #b9bbbe;
-  font-size: 13px;
-  padding: 12px 0;
-}
->>>>>>> main:Link_Visit_Counter_v12/styles.css
