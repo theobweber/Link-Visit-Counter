@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "Link Visit Counter",
   "version": "1.0",
-  "description": "Counts how many times you visit specific links in a day and tracks total visits.",
-  "permissions": ["storage", "tabs"],
+  "description": "Offline productivity tracker with domain-level time and visit insights.",
+  "permissions": ["storage", "tabs", "idle", "notifications", "downloads"],
   "background": {
     "service_worker": "background.js"
   },
