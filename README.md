@@ -1,24 +1,68 @@
 # Link Visit Counter
 
-The Link Visit Counter is a Chrome extension that tracks and displays how many times you visit specific websites and how long you stay on them, helping you monitor your browsing habits.
+The Link Visit Counter is a Chrome extension that tracks how often you visit websites, how long you stay on them, and gives you offline productivity insights while keeping domain-level transparency.
 
 **Features:**
 
-**Visit and Time Tracking:** Tracks both visit count and total time spent for each website.
+**Domain + Category Tracking:**
 
-**Three Tabs in the Popup:**
+- Keeps each domain individually visible (for example: youtube.com, github.com, reddit.com).
 
-- Daily Tab: Shows today’s visits and time spent per site (resets daily at midnight).
+- Groups domains by category with local default mapping:
 
-- Total Visits Tab: Shows cumulative visit counts across all days.
+  - Work
 
-- Total Time Tab: Shows cumulative time spent across all days, sorted from most time to least time.
+  - Learning
 
-**Automatic Session Timer:**
+  - Social Media
 
-- Starts timing when a site is opened in a tab.
+  - Entertainment
 
-- Stops timing when the tab is closed or navigates to another site.
+  - News
+
+  - Other
+
+- Allows manual domain reassignment and custom category creation.
+
+**Daily, Weekly, and Total Views:**
+
+- Daily Tab: Shows today’s domain activity with visits/time and category grouping.
+
+- Weekly Tab: Shows the last 7 days, category/domain totals, and period comparison.
+
+- Total Tab: Shows cumulative totals from local stored records.
+
+**Productivity Insights (Local Only):**
+
+- Focus score calculation based on productive vs distracting categories.
+
+- Longest focus session and total tab switches.
+
+- Optional focus session mode (25/45/60 minutes) with gentle notifications.
+
+**Time Accuracy + Goals:**
+
+- Automatic session timing per tab and domain.
+
+- Idle detection (60s) pauses tracking to avoid counting inactive time.
+
+- Daily goals for domains/categories with optional notifications and popup highlighting.
+
+**Data Tools (Offline):**
+
+- Export all data as JSON.
+
+- Import JSON backup.
+
+- Clear all local data.
+
+**Privacy and Cost:**
+
+- 100% free.
+
+- No server, no accounts, no cloud database, no paid APIs.
+
+- Data is stored locally using `chrome.storage.local`.
 
 **Installation:**
 
