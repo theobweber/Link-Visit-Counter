@@ -36,3 +36,17 @@ button.ghost, .ghost { background: #4f545c; color: white; border: none; border-r
 
 .empty-state { text-align: center; color: #b9bbbe; font-size: 13px; padding: 12px 0; }
 .small { font-size: 11px; color: #b9bbbe; }
+
+
+.heatmap {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  gap: 2px;
+  margin: 8px 0;
+}
+
+.heat-cell {
+  height: 14px;
+  border-radius: 2px;
+  opacity: 0.95;
+}

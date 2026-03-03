@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let appData = await fetchData();
 
   async function loadAndRender(tabName) {
-    appData = await fetchData();
+    appData = await fetchData(tabName === "weekly");
     if (tabName === "daily") renderDaily(appData, content);
     if (tabName === "weekly") renderWeekly(appData, content);
     if (tabName === "total") renderTotal(appData, content);
@@ -40,12 +40,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   setInterval(() => {
     const stateEl = document.getElementById("focusState");
-    if (!stateEl || !stateEl.dataset.endTime) {
-      return;
-    }
-
-    const endTime = Number(stateEl.dataset.endTime);
-    const remainingMs = Math.max(0, endTime - Date.now());
+    if (!stateEl || !stateEl.dataset.endTime) return;
+    const remainingMs = Math.max(0, Number(stateEl.dataset.endTime) - Date.now());
     stateEl.textContent = `Active • ${formatDuration(remainingMs)} left`;
     if (remainingMs <= 0) {
       stateEl.textContent = "Inactive";
@@ -54,12 +50,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   }, 1000);
 });
 
-function fetchData() {
+function fetchData(forceWeekly = false) {
   return new Promise((resolve) =>
-    chrome.runtime.sendMessage({ type: "GET_APP_DATA" }, (response) => resolve(response?.data || { daily: {}, settings: {} }))
+    chrome.runtime.sendMessage({ type: "GET_APP_DATA", forceWeekly }, (response) => resolve(response?.data || { daily: {}, settings: {} }))
   );
 }
-
 function saveSettings(settings) {
   return new Promise((resolve) => chrome.runtime.sendMessage({ type: "SAVE_SETTINGS", settings }, () => resolve()));
 }
@@ -73,12 +68,12 @@ function getTodayKey() {
   return new Date().toISOString().slice(0, 10);
 }
 
-function formatDuration(timeMs) {
-  const totalSeconds = Math.floor((timeMs || 0) / 1000);
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-  return `${hours}h ${minutes}m ${seconds}s`;
+function formatDuration(ms) {
+  const totalSeconds = Math.floor((ms || 0) / 1000);
+  const h = Math.floor(totalSeconds / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  const s = totalSeconds % 60;
+  return `${h}h ${m}m ${s}s`;
 }
 
 function getDateRange(days, shiftDays = 0) {
@@ -95,8 +90,8 @@ function getDateRange(days, shiftDays = 0) {
 function pctChange(now, prev) {
   if (!prev && !now) return "0%";
   if (!prev) return "+100%";
-  const value = Math.round(((now - prev) / prev) * 100);
-  return `${value > 0 ? "+" : ""}${value}%`;
+  const v = Math.round(((now - prev) / prev) * 100);
+  return `${v > 0 ? "+" : ""}${v}%`;
 }
 
 function aggregateCategories(domains) {
@@ -124,7 +119,6 @@ function buildTotalsByRange(appData, dateKeys) {
   dateKeys.forEach((key) => {
     const day = appData.daily?.[key];
     if (!day) return;
-
     tabSwitches += day.tabSwitches || 0;
     longestFocusSessionMs = Math.max(longestFocusSessionMs, day.longestFocusSessionMs || 0);
 
@@ -134,13 +128,13 @@ function buildTotalsByRange(appData, dateKeys) {
       domainTotals[hostname].time += stats.time || 0;
       domainTotals[hostname].category = stats.category || domainTotals[hostname].category;
 
-      const category = domainTotals[hostname].category;
-      if (!categoryTotals[category]) categoryTotals[category] = { time: 0, visits: 0 };
-      categoryTotals[category].time += stats.time || 0;
-      categoryTotals[category].visits += stats.visits || 0;
+      const cat = domainTotals[hostname].category;
+      if (!categoryTotals[cat]) categoryTotals[cat] = { time: 0, visits: 0 };
+      categoryTotals[cat].time += stats.time || 0;
+      categoryTotals[cat].visits += stats.visits || 0;
 
       totalTime += stats.time || 0;
-      if (productiveCategories.includes(category)) productiveTime += stats.time || 0;
+      if (productiveCategories.includes(cat)) productiveTime += stats.time || 0;
     });
   });
 
@@ -148,12 +142,16 @@ function buildTotalsByRange(appData, dateKeys) {
   return { domainTotals, categoryTotals, focusScore, longestFocusSessionMs, tabSwitches, totalTime };
 }
 
-function createFocusSummary(summaryLabel, stats) {
+function createInfoCard(title, lines = []) {
   const card = document.createElement("div");
   card.className = "card";
-  card.innerHTML = `<div><strong>${summaryLabel} Focus Score:</strong> ${stats.focusScore}/100</div><div class="small">Longest focus session: ${formatDuration(
-    stats.longestFocusSessionMs
-  )} • Tab switches: ${stats.tabSwitches}</div>`;
+  card.innerHTML = `<strong>${title}</strong>`;
+  lines.forEach((line) => {
+    const row = document.createElement("div");
+    row.className = "small";
+    row.textContent = line;
+    card.appendChild(row);
+  });
   return card;
 }
 
@@ -210,6 +208,53 @@ function renderCategoryPie(categoryTotals, content) {
   content.appendChild(card);
 }
 
+function renderHeatmap(day, content) {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = "<strong>Context Switching Heatmap</strong>";
+
+  const container = document.createElement("div");
+  container.className = "heatmap";
+
+  let maxSwitch = 1;
+  let bestHour = "0";
+  let worstHour = "0";
+  let bestScore = -1;
+  let worstScore = 999;
+
+  Object.entries(day.hourly || {}).forEach(([h, bucket]) => {
+    if ((bucket.switches || 0) > maxSwitch) maxSwitch = bucket.switches;
+    if ((bucket.focusScore || 0) > bestScore) {
+      bestScore = bucket.focusScore || 0;
+      bestHour = h;
+    }
+    if ((bucket.focusScore || 0) < worstScore) {
+      worstScore = bucket.focusScore || 0;
+      worstHour = h;
+    }
+  });
+
+  for (let h = 0; h < 24; h += 1) {
+    const b = day.hourly?.[String(h)] || { switches: 0, focusScore: 0, balanceScore: 0 };
+    const intensity = Math.round(((b.switches || 0) / maxSwitch) * 100);
+    const cell = document.createElement("div");
+    cell.className = "heat-cell";
+    cell.style.background = `linear-gradient(to top, rgba(240,71,71,${Math.min(0.85, intensity / 100)}), rgba(67,181,129,${Math.max(
+      0.12,
+      (b.focusScore || 0) / 100
+    )}))`;
+    cell.title = `${h}:00 | switches=${b.switches || 0} | focus=${b.focusScore || 0}`;
+    container.appendChild(cell);
+  }
+
+  card.appendChild(container);
+  const summary = document.createElement("div");
+  summary.className = "small";
+  summary.textContent = `Most productive hour: ${bestHour}:00 • Most distraction-heavy hour: ${worstHour}:00`;
+  card.appendChild(summary);
+  content.appendChild(card);
+}
+
 function renderGrouped(domains, content, showVisits = true, settings = {}, dayData = null) {
   const grouped = aggregateCategories(domains);
   if (!grouped.length) {
@@ -230,8 +275,7 @@ function renderGrouped(domains, content, showVisits = true, settings = {}, dayDa
       const domainGoalMin = Number(settings.goals?.domains?.[hostname] || 0);
       const categoryGoalMin = Number(settings.goals?.categories?.[category] || 0);
       const warnDomain = dayData && domainGoalMin > 0 && (stats.time || 0) >= domainGoalMin * 60 * 1000;
-      const categoryTime = group.time || 0;
-      const warnCategory = dayData && categoryGoalMin > 0 && categoryTime >= categoryGoalMin * 60 * 1000;
+      const warnCategory = dayData && categoryGoalMin > 0 && (group.time || 0) >= categoryGoalMin * 60 * 1000;
       row.className = `site-entry ${(warnDomain || warnCategory) ? "danger" : ""}`;
       row.innerHTML = `<div class="site-left"><img src="https://www.google.com/s2/favicons?domain=${hostname}" alt="icon"><span class="site-name">${hostname}</span></div><span class="site-stats">${showVisits ? `${
         stats.visits || 0
@@ -267,17 +311,89 @@ function renderFocusWidget(appData, content) {
   content.appendChild(card);
 }
 
+function renderRatingPrompt(appData, content) {
+  const pending = appData.focusSession?.pendingRating;
+  if (!pending) return;
+
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <strong>Session Quality Rating</strong>
+    <div class="small">How focused were you? (1–5)</div>
+    <div class="setting-row" style="margin-top:8px;">
+      <select id="sessionRating" style="flex:1;">
+        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+      </select>
+      <button id="submitRatingBtn" class="action">Save</button>
+    </div>
+  `;
+
+  card.querySelector("#submitRatingBtn").addEventListener("click", () => {
+    const rating = Number(card.querySelector("#sessionRating").value);
+    chrome.runtime.sendMessage({ type: "SUBMIT_SESSION_RATING", rating }, async () => {
+      const refreshed = await fetchData();
+      renderDaily(refreshed, content);
+    });
+  });
+
+  content.appendChild(card);
+}
+
+function renderRapidVisitInsights(day, domains, content) {
+  const lines = [];
+  Object.entries(day.shortVisits || {}).forEach(([domain, count]) => {
+    if (count >= 8) {
+      lines.push(`Frequent short visits detected on ${domain} (${count} short sessions today).`);
+    }
+  });
+
+  if (!lines.length) return;
+  content.appendChild(createInfoCard("Rapid Visit (Dopamine Loop) Detection", lines));
+}
+
+function renderStreakAndBalance(appData, day, content) {
+  const streaks = appData.streaks || {};
+  const dailyScores = day.dailyScores || {};
+  const lines = [
+    `🔥 ${streaks.current || 0}-Day Focus Streak`,
+    `Longest Streak: ${streaks.longest || 0} Days`,
+    `Total Productive Days: ${streaks.totalProductiveDays || 0}`,
+    `Browser Balance: ${dailyScores.browserBalance || 0}/100`,
+    `Average recovery time after distraction: ${formatDuration(dailyScores.averageRecoveryMs || 0)}`
+  ];
+  content.appendChild(createInfoCard("Streak & Balance", lines));
+}
+
+function renderTransitionInsights(day, content) {
+  const lines = day.insights?.transitionInsights || [];
+  if (!lines.length) return;
+  content.appendChild(createInfoCard("Distraction Pattern Detection", lines));
+}
+
 function renderDaily(appData, content) {
   const today = getTodayKey();
-  const dayData = appData.daily?.[today] || { domains: {} };
-  const domains = dayData.domains || {};
+  const day = appData.daily?.[today] || { domains: {}, hourly: {}, dailyScores: {}, shortVisits: {}, insights: {} };
+  const domains = day.domains || {};
   const stats = buildTotalsByRange(appData, [today]);
+
   content.innerHTML = "";
-  content.appendChild(createFocusSummary("Today's", stats));
+  content.appendChild(
+    createInfoCard("Today's Focus", [
+      `Focus Score: ${stats.focusScore}/100`,
+      `Longest focus session: ${formatDuration(stats.longestFocusSessionMs)}`,
+      `Tab switches: ${stats.tabSwitches}`
+    ])
+  );
+
   renderFocusWidget(appData, content);
+  renderRatingPrompt(appData, content);
+  renderStreakAndBalance(appData, day, content);
+  renderTransitionInsights(day, content);
+  renderRapidVisitInsights(day, domains, content);
+  renderHeatmap(day, content);
   renderTopDomainsBar(domains, content);
   renderCategoryPie(stats.categoryTotals, content);
-  renderGrouped(domains, content, true, appData.settings || {}, dayData);
+  renderGrouped(domains, content, true, appData.settings || {}, day);
 }
 
 function renderWeekly(appData, content) {
@@ -285,17 +401,29 @@ function renderWeekly(appData, content) {
   const previousPeriod = getDateRange(7, 7);
   const currentStats = buildTotalsByRange(appData, currentPeriod);
   const previousStats = buildTotalsByRange(appData, previousPeriod);
+  const weeklySummary = appData.analyticsCache?.weeklySummary || {};
 
   content.innerHTML = "";
-  content.appendChild(createFocusSummary("Weekly", currentStats));
+  content.appendChild(
+    createInfoCard("Weekly Focus", [
+      `Focus Score: ${currentStats.focusScore}/100 (${pctChange(currentStats.focusScore, previousStats.focusScore)})`,
+      `Longest focus session: ${formatDuration(currentStats.longestFocusSessionMs)}`,
+      `Tab switches: ${currentStats.tabSwitches}`
+    ])
+  );
 
-  const summary = document.createElement("div");
-  summary.className = "card";
-  summary.innerHTML = `<div><strong>7-day vs previous 7-day</strong></div><div class="small">Total time: ${formatDuration(currentStats.totalTime)} (${pctChange(
-    currentStats.totalTime,
-    previousStats.totalTime
-  )})</div>`;
-  content.appendChild(summary);
+  const reflectionLines = [];
+  if (weeklySummary.mostVisitedDomain) reflectionLines.push(`Most visited domain: ${weeklySummary.mostVisitedDomain} (${weeklySummary.mostVisitedCount || 0} visits)`);
+  if (weeklySummary.mostProductiveDay) reflectionLines.push(`Most productive day: ${weeklySummary.mostProductiveDay}`);
+  if (weeklySummary.mostDistractedHour !== undefined && weeklySummary.mostDistractedHour !== "") {
+    reflectionLines.push(`Most distracted hour: ${weeklySummary.mostDistractedHour}:00`);
+  }
+  if (weeklySummary.focusScoreTrend) reflectionLines.push(`Focus score trend vs previous week: ${weeklySummary.focusScoreTrend}`);
+  if (weeklySummary.timeReclaimedMs > 0) reflectionLines.push(`You reclaimed ${formatDuration(weeklySummary.timeReclaimedMs)} compared to last week.`);
+  if (weeklySummary.distractingIncreaseMs > 0) reflectionLines.push(`Distracting time increased by ${formatDuration(weeklySummary.distractingIncreaseMs)} compared to last week.`);
+  if (weeklySummary.avgRecoveryMs > 0) reflectionLines.push(`Average recovery time after distraction: ${formatDuration(weeklySummary.avgRecoveryMs)}.`);
+  if (appData.analyticsCache?.energyDrift) reflectionLines.push(appData.analyticsCache.energyDrift);
+  if (reflectionLines.length) content.appendChild(createInfoCard("Weekly Reflection Summary", reflectionLines));
 
   const domainsCard = document.createElement("div");
   domainsCard.className = "card";
@@ -360,6 +488,12 @@ function renderSettings(appData, content, onSave) {
       <div class="setting-row"><label class="small" style="display:flex;align-items:center;gap:6px;"><input type="checkbox" id="notifToggle" ${
         settings.notificationsEnabled === false ? "" : "checked"
       }/> Enable notifications</label></div>
+      <div class="setting-row"><label class="small" style="display:flex;align-items:center;gap:6px;"><input type="checkbox" id="microToggle" ${
+        settings.microInterventionsEnabled === false ? "" : "checked"
+      }/> Enable micro interventions</label></div>
+      <div class="setting-row"><input id="focusThresholdInput" type="number" min="1" max="100" placeholder="Productive day threshold" value="${
+        Number(settings.focusScoreProductiveThreshold || 70)
+      }" style="flex:1;"/><button id="saveThresholdBtn" class="action">Save</button></div>
     </div>
     <div class="card">
       <div class="setting-row"><button id="exportBtn" class="ghost" style="flex:1;">Export JSON</button><label for="importInput" class="ghost" style="text-align:center;flex:1;padding:6px 8px;border-radius:5px;cursor:pointer;">Import JSON</label><input id="importInput" type="file" accept="application/json" style="display:none;"/></div>
@@ -388,7 +522,6 @@ function renderSettings(appData, content, onSave) {
     a.value = category;
     a.textContent = category;
     categorySelect.appendChild(a);
-
     const b = document.createElement("option");
     b.value = category;
     b.textContent = category;
@@ -429,6 +562,11 @@ function renderSettings(appData, content, onSave) {
   });
 
   content.querySelector("#notifToggle").addEventListener("change", async (e) => onSave({ ...settings, notificationsEnabled: e.target.checked }));
+  content.querySelector("#microToggle").addEventListener("change", async (e) => onSave({ ...settings, microInterventionsEnabled: e.target.checked }));
+  content.querySelector("#saveThresholdBtn").addEventListener("click", async () => {
+    const value = Number(content.querySelector("#focusThresholdInput").value || 70);
+    await onSave({ ...settings, focusScoreProductiveThreshold: value });
+  });
 
   content.querySelector("#exportBtn").addEventListener("click", async () => {
     const data = await fetchData();

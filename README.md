@@ -28,17 +28,35 @@ The Link Visit Counter is a Chrome extension that tracks how often you visit web
 
 - Daily Tab: Shows today’s domain activity with visits/time and category grouping.
 
-- Weekly Tab: Shows the last 7 days, category/domain totals, and period comparison.
+- Weekly Tab: Shows the last 7 days, category/domain totals, period comparison, and weekly reflection.
 
 - Total Tab: Shows cumulative totals from local stored records.
 
-**Productivity Insights (Local Only):**
+**Behavioral Awareness Insights (Local Only):**
+
+- Distraction pattern detection (category transitions and repeat windows).
+
+- Rapid short-visit detection (dopamine loop behavior).
+
+- Context-switching heatmap (24h switching and productivity intensity).
+
+- Recovery speed metric after distractions.
+
+- Energy drift detection by hour range.
+
+- Weekly reflection summary with time reclaimed trend.
+
+**Productivity and Reinforcement:**
 
 - Focus score calculation based on productive vs distracting categories.
 
-- Longest focus session and total tab switches.
+- Browser Balance score (Focus, goal completion, recovery speed, stability).
 
-- Optional focus session mode (25/45/60 minutes) with gentle notifications.
+- Deep work streak tracking (current, longest, total productive days).
+
+- Optional focus session mode (25/45/60 minutes) with session quality rating (1–5).
+
+- Micro-interventions with cooldown and optional notifications.
 
 **Time Accuracy + Goals:**
 
