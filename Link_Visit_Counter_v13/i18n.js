@@ -1,7 +1,10 @@
 (function (global) {
   const FALLBACK_LANG = "en";
   const RTL_LANGS = new Set(["ar", "he", "ur"]);
-  const SUPPORTED = ["en", "es", "pt"];
+  const SUPPORTED = [
+    "ar", "bn", "cs", "da", "de", "el", "en", "es", "fi", "fr", "he", "hi", "hu", "id", "it", "ja",
+    "ko", "ms", "nl", "no", "pl", "pt", "ro", "ru", "sv", "th", "tr", "uk", "ur", "vi", "zh_CN", "zh_TW"
+  ];
 
   const cache = {};
   let activeLang = FALLBACK_LANG;

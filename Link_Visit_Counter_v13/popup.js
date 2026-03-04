@@ -1,10 +1,48 @@
 const DEFAULT_CATEGORIES = ["Work", "Learning", "Social Media", "Entertainment", "News", "Other"];
-const LANGUAGE_OPTIONS = [
-  ["auto", "languageAuto"],
-  ["en", "English"],
-  ["es", "Español"],
-  ["pt", "Português"]
-];
+const LANGUAGE_LABELS = {
+  ar: "العربية",
+  bn: "বাংলা",
+  cs: "Čeština",
+  da: "Dansk",
+  de: "Deutsch",
+  el: "Ελληνικά",
+  en: "English",
+  es: "Español",
+  fi: "Suomi",
+  fr: "Français",
+  he: "עברית",
+  hi: "हिन्दी",
+  hu: "Magyar",
+  id: "Bahasa Indonesia",
+  it: "Italiano",
+  ja: "日本語",
+  ko: "한국어",
+  ms: "Bahasa Melayu",
+  nl: "Nederlands",
+  no: "Norsk",
+  pl: "Polski",
+  pt: "Português",
+  ro: "Română",
+  ru: "Русский",
+  sv: "Svenska",
+  th: "ไทย",
+  tr: "Türkçe",
+  uk: "Українська",
+  ur: "اردو",
+  vi: "Tiếng Việt",
+  zh_CN: "简体中文",
+  zh_TW: "繁體中文"
+};
+
+function getLanguageOptions() {
+  const supported = Array.isArray(globalThis.I18n?.SUPPORTED) ? I18n.SUPPORTED : ["en", "es", "pt"];
+  const unique = [...new Set(supported)].sort((a, b) => {
+    const aLabel = LANGUAGE_LABELS[a] || a;
+    const bLabel = LANGUAGE_LABELS[b] || b;
+    return aLabel.localeCompare(bLabel);
+  });
+  return [["auto", "languageAuto"], ...unique.map((code) => [code, LANGUAGE_LABELS[code] || code])];
+}
 
 const t = (key, subs = []) => (globalThis.I18n ? I18n.t(key, subs) : key);
 
@@ -447,7 +485,7 @@ function renderSettings(appData, content, onSave) {
   const goalCategorySelect = content.querySelector("#goalCategorySelect");
   const languageSelect = content.querySelector("#languageSelect");
 
-  LANGUAGE_OPTIONS.forEach(([code, label]) => {
+  getLanguageOptions().forEach(([code, label]) => {
     const o = document.createElement("option");
     o.value = code;
     o.textContent = label.startsWith("language") ? t(label) : label;
