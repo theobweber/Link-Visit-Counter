@@ -214,6 +214,13 @@ function getHostname(urlString) {
 }
 
 function updateDailyScores(day, settings) {
+  if (!day || typeof day !== "object") return;
+
+  day.domains = day.domains || {};
+  day.recoveryTimes = Array.isArray(day.recoveryTimes) ? day.recoveryTimes : [];
+  day.hourly = day.hourly || buildEmptyHourly();
+  day.tabSwitches = Number(day.tabSwitches || 0);
+
   let totalTime = 0;
   let productiveTime = 0;
   let distractingTime = 0;
@@ -278,6 +285,9 @@ function updateHourlyScoreBucket(day, hour, settings) {
 }
 
 function analyzeTransitionsForDay(day) {
+  if (!day || typeof day !== "object") return;
+  day.transitions = Array.isArray(day.transitions) ? day.transitions : [];
+
   const insights = [];
   const toDistracting = day.transitions.filter(
     (t) => t.fromType === "productive" && t.toType === "distracting" && t.deltaMs <= DISTRACTION_TO_WORK_WINDOW_MS
