@@ -73,6 +73,8 @@ The Link Visit Counter is a Chrome extension that tracks how often you visit web
 
 - Manual language override in Settings (or Auto browser language).
 
+- RTL support for Arabic, Hebrew, and Urdu.
+
 **Data Tools (Offline):**
 
 - Export all data as JSON.
