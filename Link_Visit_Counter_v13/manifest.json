@@ -1,9 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Link Visit Counter",
+  "name": "__MSG_extensionName__",
   "version": "1.0",
-  "description": "Counts how many times you visit specific links in a day and tracks total visits.",
-  "permissions": ["storage", "tabs"],
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "en",
+  "permissions": ["storage", "tabs", "idle", "notifications", "downloads"],
   "background": {
     "service_worker": "background.js"
   },
