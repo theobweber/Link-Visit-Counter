@@ -1,12 +1,9 @@
 const DEFAULT_CATEGORIES = ["Work", "Learning", "Social Media", "Entertainment", "News", "Other"];
 const LANGUAGE_OPTIONS = [
   ["auto", "languageAuto"],
-  ["en", "English"], ["es", "Español"], ["fr", "Français"], ["de", "Deutsch"], ["it", "Italiano"], ["pt", "Português"],
-  ["nl", "Nederlands"], ["ru", "Русский"], ["uk", "Українська"], ["pl", "Polski"], ["tr", "Türkçe"], ["ar", "العربية"],
-  ["he", "עברית"], ["hi", "हिन्दी"], ["bn", "বাংলা"], ["ur", "اردو"], ["zh_CN", "简体中文"], ["zh_TW", "繁體中文"],
-  ["ja", "日本語"], ["ko", "한국어"], ["id", "Bahasa Indonesia"], ["vi", "Tiếng Việt"], ["th", "ไทย"], ["ms", "Melayu"],
-  ["sv", "Svenska"], ["no", "Norsk"], ["da", "Dansk"], ["fi", "Suomi"], ["cs", "Čeština"], ["ro", "Română"],
-  ["hu", "Magyar"], ["el", "Ελληνικά"]
+  ["en", "English"],
+  ["es", "Español"],
+  ["pt", "Português"]
 ];
 
 const t = (key, subs = []) => (globalThis.I18n ? I18n.t(key, subs) : key);
