@@ -432,7 +432,7 @@ function renderSettings(appData, content, onSave) {
       <div class="setting-row"><span style="flex:1" class="small">${t("notifications")}</span><input type="checkbox" class="toggle" id="notifToggle" ${settings.notificationsEnabled === false ? "" : "checked"}/></div>
       <div class="setting-row"><span style="flex:1" class="small">${t("microInterventions")}</span><input type="checkbox" class="toggle" id="microToggle" ${settings.microInterventionsEnabled === false ? "" : "checked"}/></div>
       <div class="setting-row"><input id="focusThresholdInput" type="number" min="1" max="100" value="${Number(settings.focusScoreProductiveThreshold || 70)}" style="flex:1;"/><button id="saveThresholdBtn" class="action">${t("saveThreshold")}</button></div>
-      <div class="setting-row"><span class="small" style="flex:1;">${t("language")}</span><select id="languageSelect" style="flex:1;"></select></div>
+      <div class="setting-row"><span class="small" style="flex:1;">${t("language")}</span><select id="languageSelect" style="flex:1;"></select><button id="saveLanguageBtn" class="action">${t("save")}</button></div>
     </div>
 
     <div class="card">
@@ -508,10 +508,11 @@ function renderSettings(appData, content, onSave) {
     const value = Number(content.querySelector("#focusThresholdInput").value || 70);
     await onSave({ ...settings, focusScoreProductiveThreshold: value });
   });
-  languageSelect.addEventListener("change", async (e) => {
-    const languageOverride = e.target.value;
+  content.querySelector("#saveLanguageBtn").addEventListener("click", async () => {
+    const languageOverride = languageSelect.value;
     await onSave({ ...settings, languageOverride });
     await I18n.init();
+    I18n.apply(document);
     renderSettings(await fetchData(), content, onSave);
   });
 
