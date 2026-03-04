@@ -1,104 +1,140 @@
-# Link Visit Counter
+# Link Visit Counter 
 
-The Link Visit Counter is a Chrome extension that tracks how often you visit websites, how long you stay on them, and gives you offline productivity insights while keeping domain-level transparency.
+Link Visit Counter is a Chrome extension that tracks website visits, time spent per domain, and long-term browsing patterns. All data is stored locally using `chrome.storage.local`.
 
-**Features:**
+Each domain remains individually visible (e.g., `youtube.com`, `github.com`, `reddit.com`) and can also be grouped into categories for analysis.
 
-**Domain + Category Tracking:**
+---
 
-- Keeps each domain individually visible (for example: youtube.com, github.com, reddit.com).
+# Features
 
-- Groups domains by category with local default mapping:
+## Domain and Category Tracking
 
-  - Work
+* Tracks time and visits per domain.
+* Default local categories:
 
-  - Learning
+  * Work
+  * Learning
+  * Social Media
+  * Entertainment
+  * News
+  * Other
+* Manual domain reassignment.
+* Custom category creation.
+* Domain-level transparency is preserved at all times.
 
-  - Social Media
+---
 
-  - Entertainment
+## Time Views
 
-  - News
+### Daily
 
-  - Other
+* Today’s visits and time per domain.
+* Category grouping.
+* Short-term comparison.
+* Behavioral momentum ticker (domain or category mode).
 
-- Allows manual domain reassignment and custom category creation.
+### Weekly
 
-**Daily, Weekly, and Total Views:**
+* Last 7 days summary.
+* Domain and category totals.
+* Period comparison.
+* Weekly reflection.
+* Time reclaimed calculation.
 
-- Daily Tab: Shows today’s domain activity with visits/time and category grouping.
+### Total (Lifetime)
 
-- Weekly Tab: Shows the last 7 days, category/domain totals, period comparison, and weekly reflection.
+* Cumulative totals from all stored history.
+* Lifetime metrics and trend analysis.
+* Domain and category changes over time.
+* Top domains (expandable up to 100).
+* Category time distribution.
 
-- Total Tab: Shows cumulative totals from local stored records.
+All historical daily data is stored indefinitely.
 
-**Behavioral Awareness Insights (Local Only):**
+---
 
-- Distraction pattern detection (category transitions and repeat windows).
+# Behavioral Analysis (Local Computation)
 
-- Rapid short-visit detection (dopamine loop behavior).
+All insights are generated locally using rule-based analysis.
 
-- Context-switching heatmap (24h switching and productivity intensity).
+* Distraction pattern detection (category transitions).
+* Rapid short-visit detection.
+* 24-hour context-switch heatmap.
+* Recovery speed after distractions.
+* Energy drift detection by hour.
+* Weekly and lifetime reflection summaries.
 
-- Recovery speed metric after distractions.
+---
 
-- Energy drift detection by hour range.
+# Metrics and Focus Tools
 
-- Weekly reflection summary with time reclaimed trend.
+* Focus Score (productive vs distracting time).
+* Browser Balance score (focus, recovery, goal completion, stability).
+* Deep Work streak tracking (current, longest, total productive days).
+* Focus session mode (25 / 45 / 60 minutes).
+* Session quality rating (1–5).
+* Time reclaimed tracking.
 
-**Productivity and Reinforcement:**
+---
 
-- Focus score calculation based on productive vs distracting categories.
+# Behavioral Momentum Ticker
 
-- Browser Balance score (Focus, goal completion, recovery speed, stability).
+A compact ticker above the main tabs displays usage changes.
 
-- Deep work streak tracking (current, longest, total productive days).
+* Adapts to Daily, Weekly, or Total view.
+* Percentage-based change calculation.
+* Switchable between Domain mode and Category mode.
+* Slow horizontal auto-scroll.
+* Fully local calculations.
 
-- Optional focus session mode (25/45/60 minutes) with session quality rating (1–5).
+---
 
-- Micro-interventions with cooldown and optional notifications.
+# Accuracy and Goals
 
-**Time Accuracy + Goals:**
+* Automatic per-tab session tracking.
+* Idle detection pauses inactive time.
+* Daily goals for domains or categories.
+* Optional notifications.
+* Visual indicators when goals are exceeded.
 
-- Automatic session timing per tab and domain.
+---
 
-- Idle detection (60s) pauses tracking to avoid counting inactive time.
+# Theme System
 
-- Daily goals for domains/categories with optional notifications and popup highlighting.
+* Dark and Light mode.
+* Three built-in presets.
+* Manual color customization.
+* Save and reuse custom named presets.
+* Settings persist across sessions.
 
+---
 
-**Internationalization (Hybrid i18n):**
+# Internationalization
 
-- Native Chrome `_locales` support with `default_locale` and scalable `messages.json` files.
+* Native Chrome `_locales` support.
+* Manual language override.
+* Automatic browser language detection.
+* RTL support.
 
-- Manual language override in Settings (or Auto browser language).
+---
 
-- RTL support for Arabic, Hebrew, and Urdu.
+# Data Management
 
-**Data Tools (Offline):**
+* Export all data as JSON.
+* Import JSON backups.
+* Clear local data.
 
-- Export all data as JSON.
+All data is stored locally using `chrome.storage.local`.
 
-- Import JSON backup.
+---
 
-- Clear all local data.
+# Installation
 
-**Privacy and Cost:**
+1. Download or clone this repository.
+2. Go to `chrome://extensions/`.
+3. Enable Developer Mode.
+4. Click “Load unpacked”.
+5. Select the extension folder.
 
-- 100% free.
-
-- No server, no accounts, no cloud database, no paid APIs.
-
-- Data is stored locally using `chrome.storage.local`.
-
-**Installation:**
-
-- Download or clone this repository.
-
-- Open Chrome and go to chrome://extensions/.
-
-- Enable Developer mode (toggle in the top-right corner).
-
-- Click Load unpacked and select the extension folder.
-
-**The extension will appear in your Chrome toolbar.**
+The extension will appear in the Chrome toolbar.
