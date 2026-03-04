@@ -1,100 +1,251 @@
 {
-  "extensionName": { "message": "Link Visit Counter" },
-  "extensionDescription": { "message": "Offline productivity tracker with domain-level time, visits, insights, and focus analytics." },
-
-  "tabDaily": { "message": "Daily" },
-  "tabWeekly": { "message": "Weekly" },
-  "tabTotal": { "message": "Total" },
-  "tabSettings": { "message": "Settings" },
-
-  "focusScore": { "message": "Focus Score" },
-  "browserBalance": { "message": "Browser Balance: $1/100" },
-  "focusStreak": { "message": "🔥 $1-Day Focus Streak" },
-  "focusMode": { "message": "Focus Mode" },
-  "stateActive": { "message": "Active • $1 left" },
-  "stateInactive": { "message": "Inactive" },
-
-  "dailyMetrics": { "message": "Daily Metrics" },
-  "weeklyMetrics": { "message": "Weekly Metrics" },
-  "longestFocusSession": { "message": "Longest Focus Session: $1" },
-  "contextSwitches": { "message": "Context Switches: $1" },
-  "averageRecovery": { "message": "Average Recovery Time: $1" },
-
-  "focusSession": { "message": "Focus Session" },
-  "focusSessionState": { "message": "State: $1" },
-  "distractingSwitches": { "message": "Distracting switches: $1" },
-  "sessionQualityRating": { "message": "Session Quality Rating" },
-  "sessionQualityPrompt": { "message": "How focused were you? (1–5)" },
-  "save": { "message": "Save" },
-  "start": { "message": "Start" },
-  "stop": { "message": "Stop" },
-
-  "deepWorkStreak": { "message": "Deep Work Streak" },
-  "longestStreak": { "message": "Longest Streak: $1 Days" },
-  "totalProductiveDays": { "message": "Total Productive Days: $1" },
-
-  "insightToday": { "message": "🧠 Today’s Insight" },
-  "frequentShortSessions": { "message": "Frequent Short Sessions" },
-  "frequentShortDetected": { "message": "Frequent Short Sessions detected on $1 ($2 short sessions today)." },
-
-  "heatmapTitle": { "message": "Context Switching Heatmap" },
-  "mostProductiveHour": { "message": "Most productive hour: $1:00" },
-  "mostDistractingHour": { "message": "Most distraction-heavy hour: $1:00" },
-  "heatTooltip": { "message": "$1:00 • focus $2 • switches $3" },
-
-  "topDomainsToday": { "message": "Top 5 Domains Today" },
-  "categoryTimeDistribution": { "message": "Category Time Distribution" },
-
-  "weeklyReflection": { "message": "Weekly Reflection Summary" },
-  "mostVisitedDomain": { "message": "Most visited domain: $1 ($2 visits)" },
-  "mostProductiveDay": { "message": "Most productive day: $1" },
-  "focusTrend": { "message": "Focus trend vs previous week: $1" },
-  "timeReclaimed": { "message": "You reclaimed $1 compared to last week." },
-  "distractingIncrease": { "message": "Distracting time increased by $1 compared to last week." },
-  "avgRecoveryAfterDistraction": { "message": "Average recovery time after distraction: $1." },
-
-  "domainChanges": { "message": "Domain Changes (7-day)" },
-  "categoryChanges": { "message": "Category Changes (7-day)" },
-  "visitsAndTimeWithChange": { "message": "$1 visits ($2) • $3 ($4)" },
-
-  "settingsCategories": { "message": "Categories" },
-  "settingsDomainAssignment": { "message": "Domain Assignment" },
-  "settingsGoals": { "message": "Goals" },
-  "settingsBehavior": { "message": "Behavior Settings" },
-  "settingsData": { "message": "Data Management" },
-  "notifications": { "message": "Notifications" },
-  "microInterventions": { "message": "Micro Interventions" },
-  "saveThreshold": { "message": "Save threshold" },
-  "exportJson": { "message": "Export JSON" },
-  "importJson": { "message": "Import JSON" },
-  "clearAllData": { "message": "Clear all data" },
-  "domainOverrideHint": { "message": "Domain assignment overrides default mapping." },
-  "categoriesList": { "message": "Categories: $1" },
-  "newCategory": { "message": "New category" },
-  "domainPlaceholder": { "message": "domain.com" },
-  "minutesPerDay": { "message": "min/day" },
-
-  "emptyState": { "message": "No data yet." },
-
-  "notifDomainGoalReachedTitle": { "message": "Domain goal reached" },
-  "notifDomainGoalReachedBody": { "message": "$1 reached its daily limit." },
-  "notifCategoryGoalReachedTitle": { "message": "Category goal reached" },
-  "notifCategoryGoalReachedBody": { "message": "$1 reached its daily limit." },
-  "notifFocusAlertTitle": { "message": "Focus session alert" },
-  "notifFocusAlertBody": { "message": "You switched to $1 ($2)." },
-  "notifFocusCompleteTitle": { "message": "Focus session complete" },
-  "notifFocusCompleteBody": { "message": "Great work! Focus session finished." },
-  "notifMicroDistractingTitle": { "message": "Micro Intervention" },
-  "notifMicroDistractingBody": { "message": "Consider a short break?" },
-  "notifMicroProductiveTitle": { "message": "Great deep work session" },
-  "notifMicroProductiveBody": { "message": "You have sustained productive focus for over 60 minutes." },
-
-  "insightAfternoonSwitch": { "message": "You frequently switch from Work to Social Media in the afternoon." },
-  "insightQuickSwitch": { "message": "You often switch from productive work to distracting categories within 3 minutes." },
-  "insightPostFocusDistraction": { "message": "Most distractions happen after 40+ minute focus sessions." },
-  "insightEnergyDrift": { "message": "Your productivity tends to decrease after $1 $2." },
-
-  "language": { "message": "Language" },
-  "languageAuto": { "message": "Auto (Browser Default)" },
-  "invalidBackup": { "message": "Invalid JSON backup file." }
+  "extensionName": {
+    "message": "Счётчик посещений ссылок"
+  },
+  "extensionDescription": {
+    "message": "Офлайн-трекер продуктивности с временем, визитами, инсайтами и анализом фокуса по доменам."
+  },
+  "tabDaily": {
+    "message": "День"
+  },
+  "tabWeekly": {
+    "message": "Неделя"
+  },
+  "tabTotal": {
+    "message": "Итого"
+  },
+  "tabSettings": {
+    "message": "Настройки"
+  },
+  "focusScore": {
+    "message": "Оценка фокуса"
+  },
+  "browserBalance": {
+    "message": "Баланс браузера: $1/100"
+  },
+  "focusStreak": {
+    "message": "🔥 Серия фокуса: $1 дн."
+  },
+  "focusMode": {
+    "message": "Режим фокуса"
+  },
+  "stateActive": {
+    "message": "Активно • осталось $1"
+  },
+  "stateInactive": {
+    "message": "Неактивно"
+  },
+  "dailyMetrics": {
+    "message": "Дневные метрики"
+  },
+  "weeklyMetrics": {
+    "message": "Недельные метрики"
+  },
+  "longestFocusSession": {
+    "message": "Самая длинная сессия фокуса: $1"
+  },
+  "contextSwitches": {
+    "message": "Переключения контекста: $1"
+  },
+  "averageRecovery": {
+    "message": "Среднее время восстановления: $1"
+  },
+  "focusSession": {
+    "message": "Сессия фокуса"
+  },
+  "focusSessionState": {
+    "message": "Состояние: $1"
+  },
+  "distractingSwitches": {
+    "message": "Отвлекающие переключения: $1"
+  },
+  "sessionQualityRating": {
+    "message": "Оценка качества сессии"
+  },
+  "sessionQualityPrompt": {
+    "message": "Насколько вы были сосредоточены? (1–5)"
+  },
+  "save": {
+    "message": "Сохранить"
+  },
+  "start": {
+    "message": "Старт"
+  },
+  "stop": {
+    "message": "Стоп"
+  },
+  "deepWorkStreak": {
+    "message": "Серия Deep Work"
+  },
+  "longestStreak": {
+    "message": "Лучшая серия: $1 дн."
+  },
+  "totalProductiveDays": {
+    "message": "Всего продуктивных дней: $1"
+  },
+  "insightToday": {
+    "message": "🧠 Инсайт дня"
+  },
+  "frequentShortSessions": {
+    "message": "Частые короткие сессии"
+  },
+  "frequentShortDetected": {
+    "message": "Обнаружены частые короткие сессии на $1 ($2 коротких сессий сегодня)."
+  },
+  "heatmapTitle": {
+    "message": "Тепловая карта переключений контекста"
+  },
+  "mostProductiveHour": {
+    "message": "Самый продуктивный час: $1:00"
+  },
+  "mostDistractingHour": {
+    "message": "Самый отвлекающий час: $1:00"
+  },
+  "heatTooltip": {
+    "message": "$1:00 • фокус $2 • переключения $3"
+  },
+  "topDomainsToday": {
+    "message": "Топ-5 доменов сегодня"
+  },
+  "categoryTimeDistribution": {
+    "message": "Распределение времени по категориям"
+  },
+  "weeklyReflection": {
+    "message": "Недельный итог"
+  },
+  "mostVisitedDomain": {
+    "message": "Самый посещаемый домен: $1 ($2 визитов)"
+  },
+  "mostProductiveDay": {
+    "message": "Самый продуктивный день: $1"
+  },
+  "focusTrend": {
+    "message": "Тренд фокуса к прошлой неделе: $1"
+  },
+  "timeReclaimed": {
+    "message": "Вы вернули $1 по сравнению с прошлой неделей."
+  },
+  "distractingIncrease": {
+    "message": "Время отвлечений выросло на $1 по сравнению с прошлой неделей."
+  },
+  "avgRecoveryAfterDistraction": {
+    "message": "Среднее время восстановления после отвлечения: $1."
+  },
+  "domainChanges": {
+    "message": "Изменения доменов (7 дней)"
+  },
+  "categoryChanges": {
+    "message": "Изменения категорий (7 дней)"
+  },
+  "visitsAndTimeWithChange": {
+    "message": "$1 визитов ($2) • $3 ($4)"
+  },
+  "settingsCategories": {
+    "message": "Категории"
+  },
+  "settingsDomainAssignment": {
+    "message": "Назначение доменов"
+  },
+  "settingsGoals": {
+    "message": "Цели"
+  },
+  "settingsBehavior": {
+    "message": "Поведенческие настройки"
+  },
+  "settingsData": {
+    "message": "Управление данными"
+  },
+  "notifications": {
+    "message": "Уведомления"
+  },
+  "microInterventions": {
+    "message": "Микро-интервенции"
+  },
+  "saveThreshold": {
+    "message": "Сохранить порог"
+  },
+  "exportJson": {
+    "message": "Экспорт JSON"
+  },
+  "importJson": {
+    "message": "Импорт JSON"
+  },
+  "clearAllData": {
+    "message": "Очистить все данные"
+  },
+  "domainOverrideHint": {
+    "message": "Назначение домена переопределяет сопоставление по умолчанию."
+  },
+  "categoriesList": {
+    "message": "Категории: $1"
+  },
+  "newCategory": {
+    "message": "Новая категория"
+  },
+  "domainPlaceholder": {
+    "message": "домен.com"
+  },
+  "minutesPerDay": {
+    "message": "мин/день"
+  },
+  "emptyState": {
+    "message": "Пока нет данных."
+  },
+  "notifDomainGoalReachedTitle": {
+    "message": "Достигнута цель домена"
+  },
+  "notifDomainGoalReachedBody": {
+    "message": "$1 достиг дневного лимита."
+  },
+  "notifCategoryGoalReachedTitle": {
+    "message": "Достигнута цель категории"
+  },
+  "notifCategoryGoalReachedBody": {
+    "message": "$1 достиг дневного лимита."
+  },
+  "notifFocusAlertTitle": {
+    "message": "Оповещение сессии фокуса"
+  },
+  "notifFocusAlertBody": {
+    "message": "Вы переключились на $1 ($2)."
+  },
+  "notifFocusCompleteTitle": {
+    "message": "Сессия фокуса завершена"
+  },
+  "notifFocusCompleteBody": {
+    "message": "Отличная работа! Сессия завершена."
+  },
+  "notifMicroDistractingTitle": {
+    "message": "Микро-интервенция"
+  },
+  "notifMicroDistractingBody": {
+    "message": "Может сделать короткий перерыв?"
+  },
+  "notifMicroProductiveTitle": {
+    "message": "Отличная Deep Work сессия"
+  },
+  "notifMicroProductiveBody": {
+    "message": "Вы сохраняете продуктивный фокус более 60 минут."
+  },
+  "insightAfternoonSwitch": {
+    "message": "Вы часто переключаетесь с Работы на Соцсети во второй половине дня."
+  },
+  "insightQuickSwitch": {
+    "message": "Вы часто переходите от продуктивной работы к отвлекающим категориям в течение 3 минут."
+  },
+  "insightPostFocusDistraction": {
+    "message": "Большинство отвлечений происходит после 40+ минут фокуса."
+  },
+  "insightEnergyDrift": {
+    "message": "Ваша продуктивность обычно снижается после $1 $2."
+  },
+  "language": {
+    "message": "Язык"
+  },
+  "languageAuto": {
+    "message": "Авто (язык браузера)"
+  },
+  "invalidBackup": {
+    "message": "Недопустимый JSON-файл резервной копии."
+  }
 }
