@@ -1,0 +1,251 @@
+{
+  "extensionName": {
+    "message": "Link-Besuchs-Zähler"
+  },
+  "extensionDescription": {
+    "message": "Offline-Produktivitäts-Tracker mit Zeit, Besuchen, Insights und Fokus-Analyse pro Domain."
+  },
+  "tabDaily": {
+    "message": "Täglich"
+  },
+  "tabWeekly": {
+    "message": "Wöchentlich"
+  },
+  "tabTotal": {
+    "message": "Gesamt"
+  },
+  "tabSettings": {
+    "message": "Einstellungen"
+  },
+  "focusScore": {
+    "message": "Fokus-Score"
+  },
+  "browserBalance": {
+    "message": "Browser-Balance: $1/100"
+  },
+  "focusStreak": {
+    "message": "🔥 $1-Tage-Fokusserie"
+  },
+  "focusMode": {
+    "message": "Fokusmodus"
+  },
+  "stateActive": {
+    "message": "Aktiv • $1 verbleibend"
+  },
+  "stateInactive": {
+    "message": "Inaktiv"
+  },
+  "dailyMetrics": {
+    "message": "Tagesmetriken"
+  },
+  "weeklyMetrics": {
+    "message": "Wochenmetriken"
+  },
+  "longestFocusSession": {
+    "message": "Längste Fokussitzung: $1"
+  },
+  "contextSwitches": {
+    "message": "Kontextwechsel: $1"
+  },
+  "averageRecovery": {
+    "message": "Durchschnittliche Erholungszeit: $1"
+  },
+  "focusSession": {
+    "message": "Fokussitzung"
+  },
+  "focusSessionState": {
+    "message": "Status: $1"
+  },
+  "distractingSwitches": {
+    "message": "Ablenkende Wechsel: $1"
+  },
+  "sessionQualityRating": {
+    "message": "Sitzungsqualität bewerten"
+  },
+  "sessionQualityPrompt": {
+    "message": "Wie fokussiert warst du? (1–5)"
+  },
+  "save": {
+    "message": "Speichern"
+  },
+  "start": {
+    "message": "Starten"
+  },
+  "stop": {
+    "message": "Stoppen"
+  },
+  "deepWorkStreak": {
+    "message": "Deep-Work-Serie"
+  },
+  "longestStreak": {
+    "message": "Längste Serie: $1 Tage"
+  },
+  "totalProductiveDays": {
+    "message": "Produktive Tage gesamt: $1"
+  },
+  "insightToday": {
+    "message": "🧠 Heutiger Insight"
+  },
+  "frequentShortSessions": {
+    "message": "Häufige kurze Sitzungen"
+  },
+  "frequentShortDetected": {
+    "message": "Häufige kurze Sitzungen auf $1 erkannt ($2 kurze Sitzungen heute)."
+  },
+  "heatmapTitle": {
+    "message": "Heatmap der Kontextwechsel"
+  },
+  "mostProductiveHour": {
+    "message": "Produktivste Stunde: $1:00"
+  },
+  "mostDistractingHour": {
+    "message": "Ablenkendste Stunde: $1:00"
+  },
+  "heatTooltip": {
+    "message": "$1:00 • Fokus $2 • Wechsel $3"
+  },
+  "topDomainsToday": {
+    "message": "Top 5 Domains heute"
+  },
+  "categoryTimeDistribution": {
+    "message": "Zeitverteilung nach Kategorien"
+  },
+  "weeklyReflection": {
+    "message": "Wöchentliche Zusammenfassung"
+  },
+  "mostVisitedDomain": {
+    "message": "Meistbesuchte Domain: $1 ($2 Besuche)"
+  },
+  "mostProductiveDay": {
+    "message": "Produktivster Tag: $1"
+  },
+  "focusTrend": {
+    "message": "Fokus-Trend zur Vorwoche: $1"
+  },
+  "timeReclaimed": {
+    "message": "Du hast im Vergleich zur Vorwoche $1 zurückgewonnen."
+  },
+  "distractingIncrease": {
+    "message": "Ablenkungszeit ist im Vergleich zur Vorwoche um $1 gestiegen."
+  },
+  "avgRecoveryAfterDistraction": {
+    "message": "Durchschnittliche Erholungszeit nach Ablenkung: $1."
+  },
+  "domainChanges": {
+    "message": "Domain-Änderungen (7 Tage)"
+  },
+  "categoryChanges": {
+    "message": "Kategorie-Änderungen (7 Tage)"
+  },
+  "visitsAndTimeWithChange": {
+    "message": "$1 Besuche ($2) • $3 ($4)"
+  },
+  "settingsCategories": {
+    "message": "Kategorien"
+  },
+  "settingsDomainAssignment": {
+    "message": "Domain-Zuordnung"
+  },
+  "settingsGoals": {
+    "message": "Ziele"
+  },
+  "settingsBehavior": {
+    "message": "Verhaltenseinstellungen"
+  },
+  "settingsData": {
+    "message": "Datenverwaltung"
+  },
+  "notifications": {
+    "message": "Benachrichtigungen"
+  },
+  "microInterventions": {
+    "message": "Mikro-Interventionen"
+  },
+  "saveThreshold": {
+    "message": "Schwelle speichern"
+  },
+  "exportJson": {
+    "message": "JSON exportieren"
+  },
+  "importJson": {
+    "message": "JSON importieren"
+  },
+  "clearAllData": {
+    "message": "Alle Daten löschen"
+  },
+  "domainOverrideHint": {
+    "message": "Domain-Zuordnung überschreibt die Standardzuordnung."
+  },
+  "categoriesList": {
+    "message": "Kategorien: $1"
+  },
+  "newCategory": {
+    "message": "Neue Kategorie"
+  },
+  "domainPlaceholder": {
+    "message": "domain.com"
+  },
+  "minutesPerDay": {
+    "message": "Min/Tag"
+  },
+  "emptyState": {
+    "message": "Noch keine Daten vorhanden."
+  },
+  "notifDomainGoalReachedTitle": {
+    "message": "Domain-Ziel erreicht"
+  },
+  "notifDomainGoalReachedBody": {
+    "message": "$1 hat das Tageslimit erreicht."
+  },
+  "notifCategoryGoalReachedTitle": {
+    "message": "Kategorie-Ziel erreicht"
+  },
+  "notifCategoryGoalReachedBody": {
+    "message": "$1 hat das Tageslimit erreicht."
+  },
+  "notifFocusAlertTitle": {
+    "message": "Fokussitzungswarnung"
+  },
+  "notifFocusAlertBody": {
+    "message": "Du bist zu $1 ($2) gewechselt."
+  },
+  "notifFocusCompleteTitle": {
+    "message": "Fokussitzung abgeschlossen"
+  },
+  "notifFocusCompleteBody": {
+    "message": "Starke Leistung! Fokussitzung beendet."
+  },
+  "notifMicroDistractingTitle": {
+    "message": "Mikro-Intervention"
+  },
+  "notifMicroDistractingBody": {
+    "message": "Wie wäre es mit einer kurzen Pause?"
+  },
+  "notifMicroProductiveTitle": {
+    "message": "Starke Deep-Work-Session"
+  },
+  "notifMicroProductiveBody": {
+    "message": "Du warst über 60 Minuten produktiv fokussiert."
+  },
+  "insightAfternoonSwitch": {
+    "message": "Du wechselst am Nachmittag häufig von Arbeit zu Social Media."
+  },
+  "insightQuickSwitch": {
+    "message": "Du wechselst oft innerhalb von 3 Minuten von produktiver Arbeit zu ablenkenden Kategorien."
+  },
+  "insightPostFocusDistraction": {
+    "message": "Die meisten Ablenkungen treten nach 40+ Minuten Fokus auf."
+  },
+  "insightEnergyDrift": {
+    "message": "Deine Produktivität nimmt nach $1 $2 tendenziell ab."
+  },
+  "language": {
+    "message": "Sprache"
+  },
+  "languageAuto": {
+    "message": "Auto (Browsersprache)"
+  },
+  "invalidBackup": {
+    "message": "Ungültige JSON-Sicherungsdatei."
+  }
+}
