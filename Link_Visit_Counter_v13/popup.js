@@ -364,6 +364,13 @@ function card(title, lines = [], extraClass = "") {
   return el;
 }
 
+function emptyState() {
+  const el = document.createElement("div");
+  el.className = "empty-state";
+  el.textContent = t("emptyState");
+  return el;
+}
+
 function renderTopDomainsBar(domains, content) {
   const c = card(t("topDomainsToday"));
   const sorted = Object.entries(domains).sort((a, b) => (b[1].time || 0) - (a[1].time || 0)).slice(0, 5);
