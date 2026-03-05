@@ -1,0 +1,251 @@
+{
+  "extensionName": {
+    "message": "リンク訪問カウンター"
+  },
+  "extensionDescription": {
+    "message": "ドメイン単位の時間・訪問回数・インサイト・集中分析を行うオフライン生産性トラッカー。"
+  },
+  "tabDaily": {
+    "message": "日次"
+  },
+  "tabWeekly": {
+    "message": "週次"
+  },
+  "tabTotal": {
+    "message": "合計"
+  },
+  "tabSettings": {
+    "message": "設定"
+  },
+  "focusScore": {
+    "message": "集中スコア"
+  },
+  "browserBalance": {
+    "message": "ブラウザバランス: $1/100"
+  },
+  "focusStreak": {
+    "message": "🔥 $1日連続フォーカス"
+  },
+  "focusMode": {
+    "message": "フォーカスモード"
+  },
+  "stateActive": {
+    "message": "有効 • 残り $1"
+  },
+  "stateInactive": {
+    "message": "無効"
+  },
+  "dailyMetrics": {
+    "message": "日次メトリクス"
+  },
+  "weeklyMetrics": {
+    "message": "週次メトリクス"
+  },
+  "longestFocusSession": {
+    "message": "最長フォーカスセッション: $1"
+  },
+  "contextSwitches": {
+    "message": "コンテキスト切替: $1"
+  },
+  "averageRecovery": {
+    "message": "平均回復時間: $1"
+  },
+  "focusSession": {
+    "message": "フォーカスセッション"
+  },
+  "focusSessionState": {
+    "message": "状態: $1"
+  },
+  "distractingSwitches": {
+    "message": "気が散る切替: $1"
+  },
+  "sessionQualityRating": {
+    "message": "セッション品質評価"
+  },
+  "sessionQualityPrompt": {
+    "message": "どれくらい集中できましたか？ (1–5)"
+  },
+  "save": {
+    "message": "保存"
+  },
+  "start": {
+    "message": "開始"
+  },
+  "stop": {
+    "message": "停止"
+  },
+  "deepWorkStreak": {
+    "message": "Deep Work連続記録"
+  },
+  "longestStreak": {
+    "message": "最長連続: $1日"
+  },
+  "totalProductiveDays": {
+    "message": "生産的だった日数: $1"
+  },
+  "insightToday": {
+    "message": "🧠 今日のインサイト"
+  },
+  "frequentShortSessions": {
+    "message": "短時間セッション頻発"
+  },
+  "frequentShortDetected": {
+    "message": "$1 で短時間セッションが頻発しています（本日 $2 回）。"
+  },
+  "heatmapTitle": {
+    "message": "コンテキスト切替ヒートマップ"
+  },
+  "mostProductiveHour": {
+    "message": "最も生産的な時間: $1:00"
+  },
+  "mostDistractingHour": {
+    "message": "最も気が散る時間: $1:00"
+  },
+  "heatTooltip": {
+    "message": "$1:00 • 集中 $2 • 切替 $3"
+  },
+  "topDomainsToday": {
+    "message": "今日の上位5ドメイン"
+  },
+  "categoryTimeDistribution": {
+    "message": "カテゴリ別時間分布"
+  },
+  "weeklyReflection": {
+    "message": "週間サマリー"
+  },
+  "mostVisitedDomain": {
+    "message": "最も訪問したドメイン: $1（$2 回）"
+  },
+  "mostProductiveDay": {
+    "message": "最も生産的な日: $1"
+  },
+  "focusTrend": {
+    "message": "先週比フォーカストレンド: $1"
+  },
+  "timeReclaimed": {
+    "message": "先週比で $1 を取り戻しました。"
+  },
+  "distractingIncrease": {
+    "message": "先週比で気が散る時間が $1 増加しました。"
+  },
+  "avgRecoveryAfterDistraction": {
+    "message": "気が散った後の平均回復時間: $1。"
+  },
+  "domainChanges": {
+    "message": "ドメイン変化（7日）"
+  },
+  "categoryChanges": {
+    "message": "カテゴリ変化（7日）"
+  },
+  "visitsAndTimeWithChange": {
+    "message": "$1 回訪問（$2） • $3（$4）"
+  },
+  "settingsCategories": {
+    "message": "カテゴリ"
+  },
+  "settingsDomainAssignment": {
+    "message": "ドメイン割り当て"
+  },
+  "settingsGoals": {
+    "message": "目標"
+  },
+  "settingsBehavior": {
+    "message": "行動設定"
+  },
+  "settingsData": {
+    "message": "データ管理"
+  },
+  "notifications": {
+    "message": "通知"
+  },
+  "microInterventions": {
+    "message": "マイクロ介入"
+  },
+  "saveThreshold": {
+    "message": "しきい値を保存"
+  },
+  "exportJson": {
+    "message": "JSONをエクスポート"
+  },
+  "importJson": {
+    "message": "JSONをインポート"
+  },
+  "clearAllData": {
+    "message": "すべてのデータを削除"
+  },
+  "domainOverrideHint": {
+    "message": "ドメイン割り当ては既定のマッピングより優先されます。"
+  },
+  "categoriesList": {
+    "message": "カテゴリ: $1"
+  },
+  "newCategory": {
+    "message": "新しいカテゴリ"
+  },
+  "domainPlaceholder": {
+    "message": "domain.com"
+  },
+  "minutesPerDay": {
+    "message": "分/日"
+  },
+  "emptyState": {
+    "message": "まだデータがありません。"
+  },
+  "notifDomainGoalReachedTitle": {
+    "message": "ドメイン目標に到達"
+  },
+  "notifDomainGoalReachedBody": {
+    "message": "$1 が1日の上限に達しました。"
+  },
+  "notifCategoryGoalReachedTitle": {
+    "message": "カテゴリ目標に到達"
+  },
+  "notifCategoryGoalReachedBody": {
+    "message": "$1 が1日の上限に達しました。"
+  },
+  "notifFocusAlertTitle": {
+    "message": "フォーカスセッション通知"
+  },
+  "notifFocusAlertBody": {
+    "message": "$1（$2）へ切り替えました。"
+  },
+  "notifFocusCompleteTitle": {
+    "message": "フォーカスセッション完了"
+  },
+  "notifFocusCompleteBody": {
+    "message": "お疲れさまでした！セッション完了です。"
+  },
+  "notifMicroDistractingTitle": {
+    "message": "マイクロ介入"
+  },
+  "notifMicroDistractingBody": {
+    "message": "短い休憩を取りませんか？"
+  },
+  "notifMicroProductiveTitle": {
+    "message": "素晴らしいDeep Workセッション"
+  },
+  "notifMicroProductiveBody": {
+    "message": "60分以上、生産的な集中を維持しました。"
+  },
+  "insightAfternoonSwitch": {
+    "message": "午後に「仕事」から「SNS」へ切り替える傾向があります。"
+  },
+  "insightQuickSwitch": {
+    "message": "生産的な作業から3分以内に気が散るカテゴリへ移ることが多いです。"
+  },
+  "insightPostFocusDistraction": {
+    "message": "40分以上集中した後に気が散ることが多いです。"
+  },
+  "insightEnergyDrift": {
+    "message": "$1 $2 以降に生産性が下がる傾向があります。"
+  },
+  "language": {
+    "message": "言語"
+  },
+  "languageAuto": {
+    "message": "自動（ブラウザ言語）"
+  },
+  "invalidBackup": {
+    "message": "無効なJSONバックアップファイルです。"
+  }
+}
