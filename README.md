@@ -5,8 +5,13 @@ Link Visit Tracker is a Chrome extension that tracks website visits, time spent 
 Each domain remains individually visible (e.g., `youtube.com`, `github.com`, `reddit.com`) and can also be grouped into categories for analysis.
 
 ![popup-overview-top](https://github.com/user-attachments/assets/a14d2aaa-d744-457d-9265-e372bea1d1d8)
+
+
 ![weekly](https://github.com/user-attachments/assets/50c4fae3-d2e1-48ea-b830-c714202456ab)
+
+
 ![settings-theme](https://github.com/user-attachments/assets/68dcfda2-e128-44b5-a98f-432ea3717a80)
+
 
 ---
 
