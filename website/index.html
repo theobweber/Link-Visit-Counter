@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Link Visit Counter</title>
+  <meta name="description" content="Track visits, time spent, and behavior trends locally in your browser." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav" id="topNav">
+    <div class="nav-inner">
+      <a href="#" class="brand">
+        <img src="assets/icons/logo.svg" alt="Link Visit Counter logo" />
+        <span>Link Visit Counter</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://github.com/your-org/link-visit-counter" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <!-- TODO: Replace with Chrome Web Store URL once published -->
+      <a class="btn btn-primary" href="https://github.com/your-org/link-visit-counter#install" target="_blank" rel="noopener">Install</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section">
+      <div>
+        <h1>Understand your browsing habits.</h1>
+        <p class="muted">Track visits, time spent, and behavior trends. Stored locally.</p>
+        <div class="hero-actions">
+          <!-- TODO: Replace with Chrome Web Store URL once published -->
+          <a class="btn btn-primary" href="https://github.com/your-org/link-visit-counter#install" target="_blank" rel="noopener">Install</a>
+          <a class="btn" href="https://github.com/your-org/link-visit-counter" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+        <div class="chips">
+          <span class="chip">Offline</span>
+          <span class="chip">No accounts</span>
+          <span class="chip">Local data</span>
+          <span class="chip">Free</span>
+        </div>
+      </div>
+      <div class="preview-frame">
+        <img src="assets/screenshots/popup-overview.svg" alt="Popup overview screenshot" />
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="section-title-wrap">
+        <h2>Feature highlights</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="card">
+          <img class="icon" src="assets/icons/chrome.svg" alt="Domain transparency icon" />
+          <h3>Domain Transparency</h3>
+          <p class="muted">See exactly which domains consume your browsing time and visits.</p>
+        </article>
+        <article class="card">
+          <img class="icon" src="assets/icons/github.svg" alt="Behavioral insights icon" />
+          <h3>Behavioral Insights</h3>
+          <p class="muted">Review trends, switching behavior, and reflection summaries over time.</p>
+        </article>
+        <article class="card">
+          <img class="icon" src="assets/icons/shield-offline.svg" alt="Offline storage icon" />
+          <h3>Offline Storage</h3>
+          <p class="muted">Everything runs locally with no server dependency or remote analytics.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="screenshots" class="section">
+      <div class="section-title-wrap">
+        <h2>Screenshots</h2>
+      </div>
+      <div class="shot-grid">
+        <article class="card">
+          <img src="assets/screenshots/popup-overview.svg" alt="Popup Overview" />
+          <h3>Popup Overview</h3>
+          <p class="muted">Daily metrics, session state, and top activity at a glance.</p>
+        </article>
+        <article class="card">
+          <img src="assets/screenshots/ticker.svg" alt="Momentum Ticker" />
+          <h3>Momentum Ticker</h3>
+          <p class="muted">Track short-term movement in domains or categories.</p>
+        </article>
+        <article class="card">
+          <img src="assets/screenshots/weekly.svg" alt="Weekly Insights" />
+          <h3>Weekly Insights</h3>
+          <p class="muted">Compare periods, reclaim time, and monitor behavior drift.</p>
+        </article>
+        <article class="card">
+          <img src="assets/screenshots/settings-theme.svg" alt="Theme and Settings" />
+          <h3>Theme &amp; Settings</h3>
+          <p class="muted">Customize presets, goals, language, and focus timers.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title-wrap">
+        <h2>How it works</h2>
+      </div>
+      <div class="steps">
+        <article class="card">
+          <img class="icon" src="assets/icons/chrome.svg" alt="Track icon" />
+          <h3>Track</h3>
+          <p class="muted">Capture domain time and visits during normal browsing sessions.</p>
+        </article>
+        <article class="card">
+          <img class="icon" src="assets/icons/github.svg" alt="Analyze icon" />
+          <h3>Analyze</h3>
+          <p class="muted">Convert daily activity into weekly and lifetime behavior trends.</p>
+        </article>
+        <article class="card">
+          <img class="icon" src="assets/icons/shield-local.svg" alt="Improve icon" />
+          <h3>Improve</h3>
+          <p class="muted">Use goals, focus sessions, and insights to adjust your routine.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title-wrap">
+        <h2>Local by design</h2>
+      </div>
+      <div class="card">
+        <ul class="trust-list">
+          <li>No accounts</li>
+          <li>No server</li>
+          <li>Data stored in <code>chrome.storage.local</code></li>
+        </ul>
+        <a href="privacy.html" class="text-link">Read privacy details</a>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="section-title-wrap">
+        <h2>FAQ</h2>
+      </div>
+      <div class="faq-list">
+        <details class="card">
+          <summary>Does this send data anywhere?</summary>
+          <p class="muted">No. Data stays local on your device.</p>
+        </details>
+        <details class="card">
+          <summary>Does it track full URLs?</summary>
+          <p class="muted">No. It tracks domain-level activity, not full page paths.</p>
+        </details>
+        <details class="card">
+          <summary>Does it work offline?</summary>
+          <p class="muted">Yes. Tracking and analytics run offline.</p>
+        </details>
+        <details class="card">
+          <summary>Can I export my data?</summary>
+          <p class="muted">Yes. Export and import JSON are available in settings.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="https://github.com/your-org/link-visit-counter" target="_blank" rel="noopener">GitHub</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="https://github.com/your-org/link-visit-counter/blob/main/LICENSE" target="_blank" rel="noopener">License</a>
+      <a href="https://github.com/your-org/link-visit-counter/issues" target="_blank" rel="noopener">Issues</a>
+    </div>
+    <p class="muted">© <span id="year"></span> Link Visit Counter</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
