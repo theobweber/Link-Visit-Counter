@@ -1,0 +1,251 @@
+{
+  "extensionName": {
+    "message": "Счётчик посещений ссылок"
+  },
+  "extensionDescription": {
+    "message": "Офлайн-трекер продуктивности с временем, визитами, инсайтами и анализом фокуса по доменам."
+  },
+  "tabDaily": {
+    "message": "День"
+  },
+  "tabWeekly": {
+    "message": "Неделя"
+  },
+  "tabTotal": {
+    "message": "Итого"
+  },
+  "tabSettings": {
+    "message": "Настройки"
+  },
+  "focusScore": {
+    "message": "Оценка фокуса"
+  },
+  "browserBalance": {
+    "message": "Баланс браузера: $1/100"
+  },
+  "focusStreak": {
+    "message": "🔥 Серия фокуса: $1 дн."
+  },
+  "focusMode": {
+    "message": "Режим фокуса"
+  },
+  "stateActive": {
+    "message": "Активно • осталось $1"
+  },
+  "stateInactive": {
+    "message": "Неактивно"
+  },
+  "dailyMetrics": {
+    "message": "Дневные метрики"
+  },
+  "weeklyMetrics": {
+    "message": "Недельные метрики"
+  },
+  "longestFocusSession": {
+    "message": "Самая длинная сессия фокуса: $1"
+  },
+  "contextSwitches": {
+    "message": "Переключения контекста: $1"
+  },
+  "averageRecovery": {
+    "message": "Среднее время восстановления: $1"
+  },
+  "focusSession": {
+    "message": "Сессия фокуса"
+  },
+  "focusSessionState": {
+    "message": "Состояние: $1"
+  },
+  "distractingSwitches": {
+    "message": "Отвлекающие переключения: $1"
+  },
+  "sessionQualityRating": {
+    "message": "Оценка качества сессии"
+  },
+  "sessionQualityPrompt": {
+    "message": "Насколько вы были сосредоточены? (1–5)"
+  },
+  "save": {
+    "message": "Сохранить"
+  },
+  "start": {
+    "message": "Старт"
+  },
+  "stop": {
+    "message": "Стоп"
+  },
+  "deepWorkStreak": {
+    "message": "Серия Deep Work"
+  },
+  "longestStreak": {
+    "message": "Лучшая серия: $1 дн."
+  },
+  "totalProductiveDays": {
+    "message": "Всего продуктивных дней: $1"
+  },
+  "insightToday": {
+    "message": "🧠 Инсайт дня"
+  },
+  "frequentShortSessions": {
+    "message": "Частые короткие сессии"
+  },
+  "frequentShortDetected": {
+    "message": "Обнаружены частые короткие сессии на $1 ($2 коротких сессий сегодня)."
+  },
+  "heatmapTitle": {
+    "message": "Тепловая карта переключений контекста"
+  },
+  "mostProductiveHour": {
+    "message": "Самый продуктивный час: $1:00"
+  },
+  "mostDistractingHour": {
+    "message": "Самый отвлекающий час: $1:00"
+  },
+  "heatTooltip": {
+    "message": "$1:00 • фокус $2 • переключения $3"
+  },
+  "topDomainsToday": {
+    "message": "Топ-5 доменов сегодня"
+  },
+  "categoryTimeDistribution": {
+    "message": "Распределение времени по категориям"
+  },
+  "weeklyReflection": {
+    "message": "Недельный итог"
+  },
+  "mostVisitedDomain": {
+    "message": "Самый посещаемый домен: $1 ($2 визитов)"
+  },
+  "mostProductiveDay": {
+    "message": "Самый продуктивный день: $1"
+  },
+  "focusTrend": {
+    "message": "Тренд фокуса к прошлой неделе: $1"
+  },
+  "timeReclaimed": {
+    "message": "Вы вернули $1 по сравнению с прошлой неделей."
+  },
+  "distractingIncrease": {
+    "message": "Время отвлечений выросло на $1 по сравнению с прошлой неделей."
+  },
+  "avgRecoveryAfterDistraction": {
+    "message": "Среднее время восстановления после отвлечения: $1."
+  },
+  "domainChanges": {
+    "message": "Изменения доменов (7 дней)"
+  },
+  "categoryChanges": {
+    "message": "Изменения категорий (7 дней)"
+  },
+  "visitsAndTimeWithChange": {
+    "message": "$1 визитов ($2) • $3 ($4)"
+  },
+  "settingsCategories": {
+    "message": "Категории"
+  },
+  "settingsDomainAssignment": {
+    "message": "Назначение доменов"
+  },
+  "settingsGoals": {
+    "message": "Цели"
+  },
+  "settingsBehavior": {
+    "message": "Поведенческие настройки"
+  },
+  "settingsData": {
+    "message": "Управление данными"
+  },
+  "notifications": {
+    "message": "Уведомления"
+  },
+  "microInterventions": {
+    "message": "Микро-интервенции"
+  },
+  "saveThreshold": {
+    "message": "Сохранить порог"
+  },
+  "exportJson": {
+    "message": "Экспорт JSON"
+  },
+  "importJson": {
+    "message": "Импорт JSON"
+  },
+  "clearAllData": {
+    "message": "Очистить все данные"
+  },
+  "domainOverrideHint": {
+    "message": "Назначение домена переопределяет сопоставление по умолчанию."
+  },
+  "categoriesList": {
+    "message": "Категории: $1"
+  },
+  "newCategory": {
+    "message": "Новая категория"
+  },
+  "domainPlaceholder": {
+    "message": "домен.com"
+  },
+  "minutesPerDay": {
+    "message": "мин/день"
+  },
+  "emptyState": {
+    "message": "Пока нет данных."
+  },
+  "notifDomainGoalReachedTitle": {
+    "message": "Достигнута цель домена"
+  },
+  "notifDomainGoalReachedBody": {
+    "message": "$1 достиг дневного лимита."
+  },
+  "notifCategoryGoalReachedTitle": {
+    "message": "Достигнута цель категории"
+  },
+  "notifCategoryGoalReachedBody": {
+    "message": "$1 достиг дневного лимита."
+  },
+  "notifFocusAlertTitle": {
+    "message": "Оповещение сессии фокуса"
+  },
+  "notifFocusAlertBody": {
+    "message": "Вы переключились на $1 ($2)."
+  },
+  "notifFocusCompleteTitle": {
+    "message": "Сессия фокуса завершена"
+  },
+  "notifFocusCompleteBody": {
+    "message": "Отличная работа! Сессия завершена."
+  },
+  "notifMicroDistractingTitle": {
+    "message": "Микро-интервенция"
+  },
+  "notifMicroDistractingBody": {
+    "message": "Может сделать короткий перерыв?"
+  },
+  "notifMicroProductiveTitle": {
+    "message": "Отличная Deep Work сессия"
+  },
+  "notifMicroProductiveBody": {
+    "message": "Вы сохраняете продуктивный фокус более 60 минут."
+  },
+  "insightAfternoonSwitch": {
+    "message": "Вы часто переключаетесь с Работы на Соцсети во второй половине дня."
+  },
+  "insightQuickSwitch": {
+    "message": "Вы часто переходите от продуктивной работы к отвлекающим категориям в течение 3 минут."
+  },
+  "insightPostFocusDistraction": {
+    "message": "Большинство отвлечений происходит после 40+ минут фокуса."
+  },
+  "insightEnergyDrift": {
+    "message": "Ваша продуктивность обычно снижается после $1 $2."
+  },
+  "language": {
+    "message": "Язык"
+  },
+  "languageAuto": {
+    "message": "Авто (язык браузера)"
+  },
+  "invalidBackup": {
+    "message": "Недопустимый JSON-файл резервной копии."
+  }
+}
