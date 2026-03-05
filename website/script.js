@@ -21,3 +21,16 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     target.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
+
+
+function applyBestScreenshotSource(img) {
+  const base = img.getAttribute("data-media-base");
+  if (!base) return;
+  const gifSrc = `${base}.gif`;
+  const probe = new Image();
+  probe.onload = () => { img.src = gifSrc; };
+  probe.onerror = () => { /* keep default source (SVG/PNG/etc.) */ };
+  probe.src = gifSrc;
+}
+
+document.querySelectorAll("img[data-media-base]").forEach(applyBestScreenshotSource);
