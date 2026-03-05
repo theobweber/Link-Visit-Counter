@@ -1,6 +1,6 @@
 # Website (Static, Vercel Ready)
 
-This folder contains a static product landing site for Link Visit Counter.
+This folder contains a static product landing site for Link Visit Tracker.
 
 ## Deploy on Vercel
 

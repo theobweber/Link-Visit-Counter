@@ -1,6 +1,6 @@
-# Link Visit Counter 
+# Link Visit Tracker 
 
-Link Visit Counter is a Chrome extension that tracks website visits, time spent per domain, and long-term browsing patterns. All data is stored locally using `chrome.storage.local`.
+Link Visit Tracker is a Chrome extension that tracks website visits, time spent per domain, and long-term browsing patterns. All data is stored locally using `chrome.storage.local`.
 
 Each domain remains individually visible (e.g., `youtube.com`, `github.com`, `reddit.com`) and can also be grouped into categories for analysis.
 
